@@ -40,10 +40,10 @@ inquirer.prompt(questions).then(data => {
         }
 
 
-        fs.writeFile('userInfo.json', "[ \n" + JSON.stringify(userInfo, null, '\t') + ", \n" + JSON.stringify(data, null, '\t') + "\n]", function(err) {
+        fs.writeFile('userInfo.json', '[ \n' + JSON.stringify(userInfo, null, '\t') + ",\n" + JSON.stringify(data, null, '\t') + '\n]', function(err) {
             if (err) throw err;
             console.log('success! created color user info file!');
         });
     });
-    process.read_createHTML(); 
+    process.readData(); 
 });

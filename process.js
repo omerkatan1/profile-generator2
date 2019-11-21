@@ -1,16 +1,23 @@
 const fs = require('fs');
+const util = require('util');
 
-function read_createHTML() {
-    fs.readFile('userInfo.json', 'utf8', (err, data) => {
-        if(err) throw err;
+const readFileAsync = util.promisify(fs.readFile);
 
-        var getData = JSON.parse(data);
 
-        console.log(getData);
 
-    })
+
+
+function readData() {
+    readFileAsync("userInfo.json", "utf8").then(function(rawdata) {
+
+        const getData = JSON.parse(rawdata);
+
+        
+
+    });
+
 }
 
 module.exports = {
-    read_createHTML: read_createHTML
+    read_createHTML: readData
 }
