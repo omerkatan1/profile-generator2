@@ -180,7 +180,6 @@ function generateHTML(data) {
     </head>
     
     <body>
-    <div class='wrapper'>
     <div class="row">
       <div class="wrapper">
         <div class="col">
@@ -188,15 +187,19 @@ function generateHTML(data) {
             <img src="${data[0].profilePic}" alt="ProfilePic">
             <h1>Hi!</h1>
             <h3>My Name is ${data[0].name}</h3>
+            
           </div>
         </div>
       </div>
-      <div class="col">
-        <h3>${data[0].bio}</h3>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h5>${data[0].bio}</h5>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-    </body>`;
+  </body>`;
 }
 
 
