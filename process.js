@@ -158,6 +158,7 @@ function generateHTML(data) {
                background-color: ${colors[data[1].color].headerBackground};
                color: ${colors[data[1].color].headerColor};
                margin: 20px;
+               height: 125px;
              }
              
              .col {
@@ -180,20 +181,64 @@ function generateHTML(data) {
     </head>
     
   <body>
-  <div class="row">
-    <div class=""col>
-      <div class="wrapper">
+<div class="container">
+  <div class="wrapper">
+    <div class="row">
+      <div class="col">
         <div class="photo-header">
-          <img src="${data[0].profilePic}" alt="Profile Picture">
+          <img src="${data[0].profilePic}" alt="profile picture">
           <h1>Hi!</h1>
           <h2>My name is ${data[0].name}</h2>
+          <div class="links-nav">
+            <a class="nav-link">${data[0].location}</a>
+            <a class="nav-link" href="${data[0].profileURL}">GitHub</a>
+          </div>
+        </div>
+        <main>
+          <div class="container">
+
+            <div class="row">
+            <div class="col">
+            <h3>${data[0].bio}</h3>
+            </div>
+            </div>
+
+
+            <div class="row">
+
+             <div class="col">
+                <div class="card">
+                  <h3>Public Repositories</h3>
+                  <h5>${data[0].numRepos}</h5>
+                </div>
+                <div class="card">
+                  <h3>Followers</h2>
+                  <h5>${data[0].followers}</h5>
+                </div>
+              </div>
+
+            <div class="col">
+              <div class="card">
+                <h3>GitHub Stars</h3>
+                <h5></h5>
+              </div>
+              <div class="card">
+                <h3>Following</h3>
+                <h5>${data[0].following}</h5>
+              </div>
+            </div> 
+
+            </div>
+          </div>
+        </main>
+        <div class="row">
+          <div class="col">
+             <div class="wrapper"></div>
+          </div>
         </div>
       </div>
-      <div class="colr">
-        <main>
-        </main>
-      </div>
     </div>
+  </div>
   </div>
   </body>`;
 }
