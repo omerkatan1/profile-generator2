@@ -1,38 +1,4 @@
-const fs = require('fs');
-const util = require('util');
-
-const readFileAsync = util.promisify(fs.readFile);
-
-const colors = {
-    green: {
-        wrapperBackground: "#E6E1C3",
-        headerBackground: "#C1C72C",
-        headerColor: "black",
-        photoBorderColor: "black"
-    },
-    blue: {
-        wrapperBackground: "#5F64D3",
-        headerBackground: "#26175A",
-        headerColor: "white",
-        photoBorderColor: "#73448C"
-    },
-    pink: {
-        wrapperBackground: "#879CDF",
-        headerBackground: "#FF8374",
-        headerColor: "white",
-        photoBorderColor: "#FEE24C"
-    },
-    red: {
-        wrapperBackground: "#DE9967",
-        headerBackground: "#870603",
-        headerColor: "white",
-        photoBorderColor: "white"
-    }
-};
-
-
-function generateHTML(data) {
-    return `<!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
        <head>
           <meta charset="UTF-8" />
@@ -58,7 +24,7 @@ function generateHTML(data) {
              height: 100%;
              }
              .wrapper {
-             background-color: ${colors[data[1].color].wrapperBackground};
+             background-color: #E6E1C3;
              padding-top: 100px;
              }
              body {
@@ -100,8 +66,8 @@ function generateHTML(data) {
              display: flex;
              justify-content: center;
              flex-wrap: wrap;
-             background-color: ${colors[data[1].color].headerBackground};
-             color: ${colors[data[1].color].headerColor};
+             background-color: #C1C72C;
+             color: black;
              padding: 10px;
              width: 95%;
              border-radius: 6px;
@@ -112,7 +78,7 @@ function generateHTML(data) {
              border-radius: 50%;
              object-fit: cover;
              margin-top: -75px;
-             border: 6px solid ${colors[data[1].color].photoBorderColor};
+             border: 6px solid black;
              box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
              }
              .photo-header h1, .photo-header h2 {
@@ -155,8 +121,8 @@ function generateHTML(data) {
              .card {
                padding: 20px;
                border-radius: 6px;
-               background-color: ${colors[data[1].color].headerBackground};
-               color: ${colors[data[1].color].headerColor};
+               background-color: #C1C72C;
+               color: black;
                margin: 20px;
              }
              
@@ -184,12 +150,12 @@ function generateHTML(data) {
       <div class="wrapper">
         <div class="col">
           <div class="photo-header">
-            <img src="${data[0].profilePic}" alt="ProfilePic">
+            <img src="https://avatars2.githubusercontent.com/u/54761845?v=4" alt="ProfilePic">
             <h1>Hi!</h1>
-            <h3>My Name is ${data[0].name}</h3>
+            <h3>My Name is Omer Katan</h3>
             <div class="links-nav">
-                <a class="nav-link">${data[0].location}</a>
-                <a class="nav-link" href="${data[0].profileURL}" target="_blank">GitHub</a>
+                <a class="nav-link">Seattle, WA</a>
+                <a class="nav-link" href="https://github.com/omerkatan1" target="_blank">GitHub</a>
             </div>
           </div>
         </div>
@@ -197,32 +163,9 @@ function generateHTML(data) {
       <div class="container">
         <div class="row">
           <div class="col">
-            <h5>${data[0].bio}</h5>
+            <h5>Web Developer student attending UW coding bootcamp</h5>
           </div>
         </div>
       </div>
     </div>
-  </body>`;
-}
-
-
-
-function readData() {
-    readFileAsync("userInfo.json", "utf8").then(function (rawdata) {
-
-        const data = JSON.parse(rawdata);
-
-        // generateHTML(data);
-
-        fs.writeFile('index.html', generateHTML(data), function (err) {
-            if (err) throw err;
-
-            console.log('html file written');
-        })
-
-    });
-}
-
-module.exports = {
-    readData: readData
-}
+  </body>
