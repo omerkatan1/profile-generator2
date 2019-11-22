@@ -1,5 +1,6 @@
 const fs = require('fs');
 const util = require('util');
+const pdf = require('html-pdf');
 
 const readFileAsync = util.promisify(fs.readFile);
 
@@ -181,7 +182,6 @@ function generateHTML(data) {
     </head>
     
   <body>
-<div class="container">
   <div class="wrapper">
     <div class="row">
       <div class="col">
@@ -231,14 +231,8 @@ function generateHTML(data) {
             </div>
           </div>
         </main>
-        <div class="row">
-          <div class="col">
-             <div class="container"></div>
-          </div>
-        </div>
       </div>
     </div>
-  </div>
   </div>
   </body>`;
 }
@@ -259,10 +253,23 @@ function readData() {
 
       console.log('html file written');
     })
-
   });
 }
 
+function createPDF() {
+  var html = fs.readFileSync('./index.html', 'utf8');
+  var options = {
+    "format": 'legal',
+    "orientation": "portrait"
+  };
+
+  pdf.create(html, options).toFile('./yourResume.pdf', function(err, res) {
+      if (err) throw err;
+      console.log("success");
+  })
+}
+
 module.exports = {
-  readData: readData
+  readData: readData,
+  createPDF: createPDF
 }
