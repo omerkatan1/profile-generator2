@@ -233,7 +233,7 @@ function generateHTML(data) {
         </main>
         <div class="row">
           <div class="col">
-             <div class="wrapper"></div>
+             <div class="container"></div>
           </div>
         </div>
       </div>
