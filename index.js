@@ -2,6 +2,8 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const axios = require('axios');
 const process = require('./process');
+const pdf = require('html-pdf');
+
 
 
 const questions = [
@@ -45,6 +47,14 @@ inquirer.prompt(questions).then(data => {
             if (err) throw err;
             console.log('success! created color user info file!');
         });
-        process.readData(); 
+        process.readData();
+
+        var html = fs.readFileSync('./index.html', 'utf8');
+        var options = {format: 'legal'};
+
+        pdf.create(html, options).toFile('./yourResume.pdf', function(err, res) {
+            if (err) throw err;
+            console.log("success");
+        })
     });
 });
