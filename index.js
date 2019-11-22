@@ -28,7 +28,6 @@ inquirer.prompt(questions).then(data => {
     const queryURL = `https://api.github.com/users/${data.username}`;
 
     axios.get(queryURL).then(function(response) {
-        console.log(response);
         const userInfo = {
             bio: response.data.bio,
             username: response.data.login,

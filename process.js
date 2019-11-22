@@ -4,35 +4,35 @@ const util = require('util');
 const readFileAsync = util.promisify(fs.readFile);
 
 const colors = {
-    green: {
-        wrapperBackground: "#E6E1C3",
-        headerBackground: "#C1C72C",
-        headerColor: "black",
-        photoBorderColor: "black"
-    },
-    blue: {
-        wrapperBackground: "#5F64D3",
-        headerBackground: "#26175A",
-        headerColor: "white",
-        photoBorderColor: "#73448C"
-    },
-    pink: {
-        wrapperBackground: "#879CDF",
-        headerBackground: "#FF8374",
-        headerColor: "white",
-        photoBorderColor: "#FEE24C"
-    },
-    red: {
-        wrapperBackground: "#DE9967",
-        headerBackground: "#870603",
-        headerColor: "white",
-        photoBorderColor: "white"
-    }
+  green: {
+    wrapperBackground: "#E6E1C3",
+    headerBackground: "#C1C72C",
+    headerColor: "black",
+    photoBorderColor: "black"
+  },
+  blue: {
+    wrapperBackground: "#5F64D3",
+    headerBackground: "#26175A",
+    headerColor: "white",
+    photoBorderColor: "#73448C"
+  },
+  pink: {
+    wrapperBackground: "#879CDF",
+    headerBackground: "#FF8374",
+    headerColor: "white",
+    photoBorderColor: "#FEE24C"
+  },
+  red: {
+    wrapperBackground: "#DE9967",
+    headerBackground: "#870603",
+    headerColor: "white",
+    photoBorderColor: "white"
+  }
 };
 
 
 function generateHTML(data) {
-    return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
     <html lang="en">
        <head>
           <meta charset="UTF-8" />
@@ -179,50 +179,45 @@ function generateHTML(data) {
           </style>
     </head>
     
-    <body>
-    <div class="row">
+  <body>
+  <div class="row">
+    <div class=""col>
       <div class="wrapper">
-        <div class="col">
-          <div class="photo-header">
-            <img src="${data[0].profilePic}" alt="ProfilePic">
-            <h1>Hi!</h1>
-            <h3>My Name is ${data[0].name}</h3>
-            <div class="links-nav">
-                <a class="nav-link">${data[0].location}</a>
-                <a class="nav-link" href="${data[0].profileURL}" target="_blank">GitHub</a>
-            </div>
-          </div>
+        <div class="photo-header">
+          <img src="${data[0].profilePic}" alt="Profile Picture">
+          <h1>Hi!</h1>
+          <h2>My name is ${data[0].name}</h2>
         </div>
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <h5>${data[0].bio}</h5>
-          </div>
-        </div>
+      <div class="colr">
+        <main>
+        </main>
       </div>
     </div>
+  </div>
   </body>`;
 }
-
+// ${data[0].profilePic}
+// ${data[0].name}
+// ${data[0].bio}
 
 
 function readData() {
-    readFileAsync("userInfo.json", "utf8").then(function (rawdata) {
+  readFileAsync("userInfo.json", "utf8").then(function (rawdata) {
 
-        const data = JSON.parse(rawdata);
+    const data = JSON.parse(rawdata);
 
-        // generateHTML(data);
+    // generateHTML(data);
 
-        fs.writeFile('index.html', generateHTML(data), function (err) {
-            if (err) throw err;
+    fs.writeFile('index.html', generateHTML(data), function (err) {
+      if (err) throw err;
 
-            console.log('html file written');
-        })
+      console.log('html file written');
+    })
 
-    });
+  });
 }
 
 module.exports = {
-    readData: readData
+  readData: readData
 }
